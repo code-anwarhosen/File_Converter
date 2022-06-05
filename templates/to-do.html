@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% comment %} {% for task in tasks %}
+    <li>{{task.user}} -- {{task.todo}} -- {{task.created_at}} -- {{task.updated_at}}</li>
+{% endfor %} {% endcomment %}
+
+<form action="/to_do/" method="post">
+    {% csrf_token %}
+    {{task_form.todo}}
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

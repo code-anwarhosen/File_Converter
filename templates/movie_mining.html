@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Latest Movies{% endblock title %}
+
+{% block content %}
+
+<div class="container my-3">
+    <h2 class="d-flex justify-content-center my-4 text-success fw-bolder">Latest Update: 
+    <span class="badge bg-secondary" id="is_new">{{is_new}}</span>
+    </h2>
+    <div class="row row-cols-2 row-cols-md-3 g-4">
+        
+      {% for movie in movies %}
+        <div class="col">
+          <div class="card h-60 bg-info bg-opacity-50">
+            <img src="{{movie.image|safe}}" class="card-img-top w-100 rounded h-50 d-flex justify-content-center" alt="...">
+            <div class="card-body">
+              <h6 class="card-title">{{movie.title|safe}}</h6>
+              {% comment %} <p class="card-text">{{movie.title|safe}}</p> {% endcomment %}
+            </div>
+            <div class="my-1 mx-2"><a href="{{movie.link}}" class="btn btn-secondary btn-sm">Download</a></div>
+            <!-- <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div> -->
+          </div>
+        </div>
+        {% endfor %}
+        
+        
+    </div>
+</div>
+<!-- to reload this page every 2 hours -->
+<script type="text/javascript">
+  {% comment %} setInterval(function(){
+    window.location.reload(1);
+  }, 2*60*60000); {% endcomment %}
+
+  {% comment %} var is_new = document.getElementById("is_new").textContent;
+  if(is_new === "New"){
+    window.alert("New Movies Available, Now")
+  } {% endcomment %}
+</script>
+{% endblock content %}

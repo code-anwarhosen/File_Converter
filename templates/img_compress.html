@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Image Compressor{% endblock title %}
+{% block content %}
+
+<div class="mb-3 container my-2">
+    <form action="/image-compressor/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="formFile" class="form-label"><strong>Input your image file here...</strong></label>
+        <input accept="image/*" class="form-control" type="file" id="image" name="image" value="" required>
+        <button type="submit" class="btn btn-info my-3">Compress</button>
+    </form>
+  </div>
+
+{% if image_obj %}
+<div class="container">
+  <div class="card" style="width: 18rem;">
+      <img src="/media/{{image_obj.image}}" alt="...">
+      <div class="card-body">
+        <!-- <p class="card-text">Compressed Image</p> -->
+        <!-- <a href="/media/{{image_obj.image}}" class="card-text">View Image</a> -->
+        <!-- <a href="/media/{{image_obj.image}}" class="btn btn-dark" download>Download</a> -->
+
+        <div class="row g-3">
+          <div class="col">
+            <a href="/media/{{image_obj.image}}" class="btn btn-dark" download>Download</a>
+          </div>
+          <div class="col">
+            <a href="?view_link=/media/{{image_obj.image}}" class="btn btn-outline-dark">View Image</a>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% if view_image %}
+  <div class="container">
+    
+    
+    <div class="my-3">
+      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="" class="btn btn-dark" onClick="javascript:window.history.back();">Back</a>
+        <a href="{{view_image}}" class="btn btn-outline-dark mx-2" download>Download</a>
+      </div>
+    </div>
+    <img src="{{view_image}}" class="img-fluid justify-content-center" alt="Invalid Link">
+  </div>
+{% endif %}
+{% endblock content %}

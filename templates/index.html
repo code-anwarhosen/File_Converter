@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | File Converter{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="d-grid gap-2 col-5 mx-auto">
+    <h2 class="d-flex justify-content-center my-2 text-secondary">File Converter</h2>
+    <a href="/image-compressor/" class="btn btn-info fw-bold">Image Compressor</a>
+    <a href="/latest_movie/" class="btn btn-info fw-bold">Movie Collector</a>
+</div>
+
+
+
+{% endblock content %}
